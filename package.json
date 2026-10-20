@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "test": "playwright test",
@@ -23,9 +23,5 @@
     "@playwright/test": "^1.56.0",
     "@types/node": "^22.0.0",
     "typescript": "^5.9.0"
-  },
-  "dependencies": {
-    "20": "^3.1.9",
-    "version": "^0.1.2"
   }
 }

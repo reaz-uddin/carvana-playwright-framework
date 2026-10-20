@@ -54,6 +54,11 @@ export abstract class BasePage {
     return snapshot;
   }
 
+  /** Current page URL. */
+  currentUrl(): string {
+    return this.page.url();
+  }
+
   /** Fail fast, with a clear message, if the site served a bot-protection page. */
   async assertNotBlocked(): Promise<void> {
     const bodyText = (await this.page.locator('body').innerText().catch(() => '')).slice(0, 5000);

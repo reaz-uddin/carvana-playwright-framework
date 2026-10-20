@@ -1,6 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { BasePage } from './BasePage';
 import type { InventoryLocation } from '../data/locations';
+import { SearchBar } from '../components/SearchBar';
 
 /**
  * Carvana location inventory page, e.g. https://www.carvana.com/cars/in-richmond-va
@@ -14,15 +15,15 @@ export class CarvanaInventoryPage extends BasePage {
   readonly mainHeading: Locator;
   readonly vehicleTiles: Locator;
   readonly cookieAcceptButton: Locator;
+  readonly searchBar: SearchBar;
 
   constructor(page: Page, private readonly location: InventoryLocation) {
     super(page);
     this.path = `/cars/${location.slug}`;
 
     this.mainHeading = page.getByRole('heading', { level: 1 }).first();
-    this.vehicleTiles = page.locator(
-      '[data-qa="result-tile"], [data-testid*="result-tile"], a[href*="/vehicle/"]',
-    );
+    this.vehicleTiles = page.getByTestId('result-tile');
+    this.searchBar = new SearchBar(page);
     this.cookieAcceptButton = page.getByRole('button', { name: /accept( all)?( cookies)?/i });
   }
 
